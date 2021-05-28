@@ -1,0 +1,3 @@
+Pyrogram
+Tgcrypto
+mariadb
