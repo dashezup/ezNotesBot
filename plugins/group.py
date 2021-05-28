@@ -49,6 +49,8 @@ GROUP_HELP = (f"""\
 \u2022 `/notes` __list notes__
 \u2022 `#hashtag` __show a note__""")
 
+m_collection = {}
+
 
 @Client.on_message(filters.group
                    & filters.incoming
@@ -66,7 +68,8 @@ async def show_help(_, m: Message):
 async def hashtag_command(_, m: Message):
     if m.text in ('/notes', '/notes@ezNotesBot'):
         note_list = await db_list_notes(m.chat.id)
-        await m.reply_text(note_list)
+        m_response = await m.reply_text(note_list)
+        await update_collection(m_response)
         return
     match_list = p.findall(m.text)
     if not match_list:
@@ -77,8 +80,12 @@ async def hashtag_command(_, m: Message):
         response = await db_show_note(m.chat.id, hashtag)
         if response:
             m_target = m_reply or m
-            await m_target.reply_text(response, parse_mode='html',
-                                      disable_web_page_preview=True)
+            m_response = await m_target.reply_text(
+                response,
+                parse_mode='html',
+                disable_web_page_preview=True
+            )
+            await update_collection(m_response)
         return
     if action and m.sender_chat and m.sender_chat.id == m.chat.id:
         if action == '+' and m_reply and m_reply:
@@ -90,6 +97,17 @@ async def hashtag_command(_, m: Message):
             response = await db_remove_note(m.chat.id, hashtag)
             await m.reply_text(response)
             return
+
+
+async def update_collection(m: Message):
+    chat_id = m.chat.id
+    m_old_response = m_collection.get(chat_id)
+    try:
+        if m_old_response.reply_to_message.text[:1] in ('/', '#'):
+            await m_old_response.delete()
+    except (AttributeError, TypeError):
+        pass
+    m_collection[chat_id] = m
 
 
 async def db_add_note(chat_id, hashtag, description, text) -> str:
