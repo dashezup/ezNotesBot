@@ -27,7 +27,8 @@ plugins = dict(
         "group",
         "inline",
         "private.start",
-        "private.help"
+        "private.help",
+        "private.stats"
     ]
 )
 

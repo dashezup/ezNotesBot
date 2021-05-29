@@ -24,7 +24,7 @@ This bot uses MariaDB for saving notes
 
 #### Requirements
 
-- Python 3.6 or higher
+- Python 3.8 or higher
 - A [Telegram API key](https://docs.pyrogram.org/intro/setup#api-keys)
 - A Telegram Bot created with [BotFather](https://t.me/BotFather) with
   "inline mode" and "inline feedback" enabled (for personal notes)
