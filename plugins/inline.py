@@ -96,7 +96,7 @@ async def answer_iq(c: Client, iq: InlineQuery):
     await iq.answer(
         iq_results,
         cache_time=1,
-        next_offset=str(offset + NUM_ITEMS_PER_PAGE) if iq_results else str(0),
+        next_offset=str(offset + NUM_ITEMS_PER_PAGE) if iq_results else '',
         switch_pm_text=f"{emoji.PLUS} Add a New Note {emoji.MEMO}",
         switch_pm_parameter="add_note"
     )
