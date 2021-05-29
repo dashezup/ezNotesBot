@@ -92,7 +92,10 @@ async def save_note(_, m: Message):
     conn.commit()
     m_reply = m.reply_to_message
     if m_reply.text == ASK_TO_SEND_NOTE:
-        await m.reply_text(START_TEXT, reply_markup=START_REPLY_MARKUP)
+        await m.reply_text(START_TEXT,
+                           reply_markup=START_REPLY_MARKUP,
+                           disable_web_page_preview=True)
+        await m_reply.delete()
     else:
         m_response = await m.reply_text(
             f"{emoji.CHECK_MARK_BUTTON} Saved as a new note",

@@ -72,6 +72,7 @@ async def answer_iq(c: Client, iq: InlineQuery):
                      .strftime('%F')),
             input_message_content=InputTextMessageContent(
                 note[2],
+                parse_mode='html',
                 disable_web_page_preview=True),
             id=f"{iq.from_user.id}_{note[0]}",
             description=(await c.parser.parse(note[2], 'html'))['message']
