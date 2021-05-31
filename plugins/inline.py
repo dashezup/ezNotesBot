@@ -15,7 +15,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import re
 from datetime import datetime
 
 from pyrogram import Client, filters, emoji
@@ -42,7 +41,6 @@ THUMB_URL = (
     "thumbs/120/openmoji/272/memo_1f4dd.png"
 )
 NUM_ITEMS_PER_PAGE = 10
-p = re.compile(r'^(-|#|)( |)(.*)$', re.UNICODE)
 
 
 @Client.on_inline_query()
