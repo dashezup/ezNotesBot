@@ -20,16 +20,16 @@ from pyrogram.types import Message
 
 from data import cur
 
-DB_QUERY = ("""\
+DB_QUERY = """\
 (SELECT
     CAST(COUNT(DISTINCT user_id) AS CHAR),
     CAST(COUNT(ALL user_id) AS CHAR) FROM private_notes
 )
-UNION
+UNION ALL
 (SELECT
     CAST(COUNT(DISTINCT chat_id) AS CHAR),
     CAST(COUNT(ALL chat_id) AS CHAR) FROM group_notes
-);""")
+)"""
 
 
 @Client.on_message(filters.private
@@ -50,5 +50,5 @@ async def command_stats(_, m: Message):
         f"\u2022 {users = }\n"
         f"\u2022 {private_notes = }\n"
         f"\u2022 {groups = }\n"
-        f"\u2022 {group_notes = }\n"
+        f"\u2022 {group_notes = }"
     )
