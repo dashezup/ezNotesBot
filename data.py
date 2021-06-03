@@ -31,6 +31,7 @@ try:
         port=DB_PORT,
         database="eznotes"
     )
+    conn.auto_reconnect = True
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB: {e}")
     sys.exit(1)
@@ -52,3 +53,5 @@ cur.execute("""CREATE TABLE IF NOT EXISTS group_notes (
     note_text text CHARACTER SET 'utf8mb4' NOT NULL,
     UNIQUE (chat_id, hashtag)
 )""")
+
+conn.commit()

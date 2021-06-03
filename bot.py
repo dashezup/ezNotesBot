@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from pyrogram import Client
 
-from data import conn
+from data import conn, cur
 
 plugins = dict(
     root="plugins",
@@ -35,5 +35,6 @@ plugins = dict(
 # logging.basicConfig(level=logging.DEBUG)
 print('>>> BOT STARTED')
 Client("ezNotesBot", plugins=plugins).run()
+cur.close()
 conn.close()
 print('\n>>> BOT STOPPED')
