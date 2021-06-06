@@ -53,7 +53,7 @@ START_REPLY_MARKUP = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(
                 f"{emoji.PLUS} Add to a Group",
-                url="https://t.me/ezNotesBot?startgroup="
+                url="https://t.me/ezNotesBot?startgroup=_"
             )
         ]
     ]

@@ -12,6 +12,8 @@ Telegram Bot for saving and sharing personal and group notes.
 
 **Group notes**:
 
+- [add @ezNotesBot to your groups](https://t.me/ezNotesBot?startgroup=_)
+  to use it
 - only anonymous admin can add/remove notes
 - `+#hashtag [description]` (as a reply) to add/replace a note
 - `-#hashtag` remove a note
